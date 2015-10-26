@@ -13,6 +13,21 @@ RUN \
     apt-get install -y redis-server \
 &&  cp /etc/redis/redis.conf /etc/redis/redis.conf.default
 
+# Install ruby
+RUN \
+    apt-get update \
+&&  apt-get install -fyqq software-properties-common \
+&&  apt-add-repository ppa:brightbox/ruby-ng \
+&&  apt-get update \
+&&  apt-get install -fyqq ruby2.2
+
+# test after install
+RUN \
+    node -v \
+&&  npm -v \
+&&  redis-server -v \
+&&  ruby -v
+
 # start redis
 CMD \
     redis-server /etc/redis/redis.conf
