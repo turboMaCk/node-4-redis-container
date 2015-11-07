@@ -21,6 +21,11 @@ RUN \
 &&  apt-get update \
 &&  apt-get install -fyqq ruby2.2
 
+# Install git
+RUN \
+    apt-get update \
+&&  apt-get install -fyqq git-core
+
 # test after install
 RUN \
     node -v \
